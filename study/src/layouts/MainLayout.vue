@@ -51,6 +51,13 @@
             </q-item-section>
             <q-item-section> Help </q-item-section>
           </q-item>
+
+          <q-item to="/CreatePDF" clickable v-ripple>
+            <q-item-section avatar>
+              <q-icon name="picture_as_pdf" />
+            </q-item-section>
+            <q-item-section> Create PDF </q-item-section>
+          </q-item>
         </q-list>
       </q-scroll-area>
 
