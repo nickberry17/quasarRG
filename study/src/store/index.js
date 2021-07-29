@@ -6,9 +6,9 @@ const state = reactive({
     customers: [
         {
             id: uuidv4(),
-            name: 'Hello',
-            orderId: 'N12345',
-            company: 'Telco Antennas',
+            name: '',
+            orderId: '',
+            company: '',
         }
     ],
     counter: 0,
@@ -32,7 +32,7 @@ const methods = {
         state.customers.push(
             new Customer(name, orderId, company)
         )
-        console.log("Customers: " + state.customers)
+        console.log("Customers: " + state.customers[0])
     },
     removeCustomer(customerId) {
         let i = state.customers.map(customer => customer.id).indexOf(customerId)
