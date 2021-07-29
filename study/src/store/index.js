@@ -36,7 +36,7 @@ const methods = {
     },
     removeCustomer(customerId) {
         let i = state.customers.map(customer => customer.id).indexOf(customerId)
-        console.log("Deleting: " + i.toString())
+        console.log("Deleting from customers[] where id is: " + state.customers[i].id)
         state.customers.splice(i, 1)
     },
     calculateFresnelZone() {
@@ -48,6 +48,9 @@ const methods = {
     },
     decreaseCounter() {
         state.counter--
+    },
+    createPDF() {
+        console.log("Creating PDF")
     }
 }
 
