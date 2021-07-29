@@ -2,6 +2,7 @@
 import { reactive } from 'vue'
 import { v4 as uuidv4 } from 'uuid';
 
+// pdf library
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
@@ -24,32 +25,22 @@ const state = reactive({
 const docDefinition = {
     content: [
         // if you don't need styles, you can use a simple string to define a paragraph
-        'This is a standard paragraph, using default style',
-
-        // using a { text: '...' } object lets you set styling properties
-        { text: 'This paragraph will have a bigger font', fontSize: 15 },
-
-        // if you set the value of text to an array instead of a string, you'll be able
-        // to style any part individually
-        {
-            text: [
-                'This paragraph is defined as an array of elements to make it possible to ',
-                { text: 'restyle part of it and make it bigger ', fontSize: 15 },
-                'than the rest.'
-            ]
-        }
+        `Basic Site survey prepared for: ${state.customers[0].name} \n Order ID: ${state.customers[0].orderId}\n Company Name: ${state.customers[0].company}`,
+        /* 
+                // using a { text: '...' } object lets you set styling properties
+                { text: 'This paragraph will have a bigger font', fontSize: 15 },
+        
+                // if you set the value of text to an array instead of a string, you'll be able
+                // to style any part individually
+                {
+                    text: [
+                        'This paragraph is defined as an array of elements to make it possible to ',
+                        { text: 'restyle part of it and make it bigger ', fontSize: 15 },
+                        'than the rest.'
+                    ]
+                } */
     ]
 };
-
-class Customer {
-    constructor(name, orderId, company) {
-        this.id = uuidv4(),
-            this.name = name,
-            this.orderId = orderId,
-            this.company = company
-        console.log(this)
-    }
-}
 
 const methods = {
     createCustomer(name, orderId, company) {
@@ -79,9 +70,20 @@ const methods = {
     }
 }
 
+class Customer {
+    constructor(name, orderId, company) {
+        this.id = uuidv4(),
+            this.name = name,
+            this.orderId = orderId,
+            this.company = company
+        console.log(this)
+    }
+}
+
 export default {
     state,
     methods,
     docDefinition,
+    // objects
     Customer
 }
