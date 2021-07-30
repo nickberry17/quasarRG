@@ -7,7 +7,10 @@ import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
-const state = reactive({
+let state = reactive({
+    survey: {
+        type: 'Basic'
+    },
     customers: [
         {
             id: uuidv4(),
@@ -16,31 +19,43 @@ const state = reactive({
             company: '',
         }
     ],
-    counter: 0,
     frequency: '',
     distance: '',
     fresnelZoneRadius: 0
 })
 
-const docDefinition = {
-    content: [
-        // if you don't need styles, you can use a simple string to define a paragraph
-        `Basic Site survey prepared for: ${state.customers[0].name} \n Order ID: ${state.customers[0].orderId}\n Company Name: ${state.customers[0].company}`,
-        /* 
-                // using a { text: '...' } object lets you set styling properties
-                { text: 'This paragraph will have a bigger font', fontSize: 15 },
-        
-                // if you set the value of text to an array instead of a string, you'll be able
-                // to style any part individually
-                {
-                    text: [
-                        'This paragraph is defined as an array of elements to make it possible to ',
-                        { text: 'restyle part of it and make it bigger ', fontSize: 15 },
-                        'than the rest.'
-                    ]
-                } */
-    ]
-};
+function makeTitlePage(state) {
+    return {
+        stack: [
+            `${state.survey.type.toString()} Site Assessment`,
+            { text: `Prepared for ${state.customers[0].name.toString()}`, style: 'subheader' }
+        ],
+        style: 'header'
+    }
+}
+
+function makeDocDefinition(state) {
+    return {
+        content: [
+            makeTitlePage(state)
+        ],
+        styles: {
+            header: {
+                fontSize: 18,
+                bold: true,
+                alignment: 'center',
+                margin: [0, 190, 0, 80]
+            },
+            subheader: {
+                fontSize: 14
+            },
+            superMargin: {
+                margin: [20, 0, 40, 0],
+                fontSize: 15
+            }
+        }
+    }
+}
 
 const methods = {
     createCustomer(name, orderId, company) {
@@ -66,7 +81,8 @@ const methods = {
     },
     createPDF() {
         console.log("Creating PDF")
-        pdfMake.createPdf(docDefinition).download();
+        console.log(state.customers[0])
+        pdfMake.createPdf(makeDocDefinition(state)).download();
     }
 }
 
@@ -83,7 +99,6 @@ class Customer {
 export default {
     state,
     methods,
-    docDefinition,
     // objects
     Customer
 }
