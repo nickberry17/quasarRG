@@ -28,7 +28,11 @@ function makeTitlePage(state) {
     return {
         stack: [
             `${state.survey.type.toString()} Site Assessment`,
-            { text: `Prepared for ${state.customers[0].name.toString()}`, style: 'subheader' }
+            {
+                text: `Prepared for ${state.customers.map(function (customer) {
+                    return `${customer.name} `
+                }).join('')}`, style: 'subheader'
+            }
         ],
         style: 'header'
     }
@@ -81,7 +85,6 @@ const methods = {
     },
     createPDF() {
         console.log("Creating PDF")
-        console.log(state.customers[0])
         pdfMake.createPdf(makeDocDefinition(state)).download();
     }
 }
