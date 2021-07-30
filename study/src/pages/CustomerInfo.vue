@@ -1,11 +1,31 @@
 
 <template>
   <div class="q-pa-md" style="max-width: 400px">
+    <h2>Order Details</h2>
+    <q-card style="margin: 1rem">
+      <q-input
+        color="purple-12"
+        filled
+        type="string"
+        v-model="store.state.survey.orderId"
+        label="Order ID *"
+        hint="Order ID"
+        lazy-rules
+        :rules="[
+          (val) => (val !== null && val !== '') || 'Please supply the order ID',
+          (val) =>
+            (val[0] === 'N' && val.length > 0 && val.length < 7) ||
+            'Invalid Order ID',
+        ]"
+      />
+    </q-card>
+
     <q-btn
       label="Add Customer"
       @click="store.methods.createCustomer('', '', '')"
       color="primary"
     />
+
     <q-list
       bordered
       separator
@@ -22,7 +42,7 @@
               {{ customer.company || "Company Name" }}
             </div>
             <div class="text-subtitle2">
-              {{ customer.orderId || "Order ID" }}
+              {{ `Order ID: ${store.state.survey.orderId}` || "Order ID" }}
             </div>
           </q-card-section>
 
@@ -32,23 +52,6 @@
             @submit="store.methods.createCustomer('', '', '')"
             class="q-gutter-md"
           >
-            <q-input
-              color="purple-12"
-              filled
-              type="string"
-              v-model="store.state.customers[index].orderId"
-              label="Order ID *"
-              hint="Order ID"
-              lazy-rules
-              :rules="[
-                (val) =>
-                  (val !== null && val !== '') || 'Please supply the order ID',
-                (val) =>
-                  (val[0] === 'N' && val.length > 0 && val.length < 7) ||
-                  'Invalid Order ID',
-              ]"
-            />
-
             <q-input
               color="purple-12"
               filled
@@ -83,8 +86,7 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
-import { inject } from "vue";
+import { defineComponent, inject } from "vue";
 
 export default defineComponent({
   name: "PageCustomerInfo",
