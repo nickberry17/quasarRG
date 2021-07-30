@@ -1,15 +1,16 @@
 // make the object reactive
 import { reactive } from 'vue'
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid'
 
 // pdf library
-import pdfMake from "pdfmake/build/pdfmake";
-import pdfFonts from "pdfmake/build/vfs_fonts";
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
+import pdfMake from "pdfmake/build/pdfmake"
+import pdfFonts from "pdfmake/build/vfs_fonts"
+pdfMake.vfs = pdfFonts.pdfMake.vfs
 
 let state = reactive({
     survey: {
-        type: 'Basic'
+        type: 'Basic',
+        orderId: ''
     },
     customers: [
         {
@@ -24,6 +25,22 @@ let state = reactive({
     fresnelZoneRadius: 0
 })
 
+function makeHeader(state) {
+    return {
+        text: `${state.survey.orderId.toString()}`,
+        style: 'header'
+    }
+}
+
+function makeInfo(state) {
+    return {
+        title: `${state.survey.type.toString()} Site Assessment ${state.survey.orderId.toString()}`,
+        author: 'Telco Antennas Pty Ltd',
+        subject: 'Signal coverage',
+        keywords: 'site survey signal coverage survey telco antennas'
+    }
+}
+
 function makeTitlePage(state) {
     return {
         stack: [
@@ -31,26 +48,38 @@ function makeTitlePage(state) {
             {
                 text: `Prepared for ${state.customers.map(function (customer) {
                     return `${customer.name} `
-                }).join('')}`, style: 'subheader'
+                }).join('')}`, style: 'subheading'
             }
         ],
-        style: 'header'
+        style: 'heading'
     }
 }
 
 function makeDocDefinition(state) {
     return {
+        info: makeInfo(state),
+        watermark: {
+            text: "Telco Antennas Pty Ltd",
+            color: 'blue',
+            opacity: 0.015,
+        },
+        header: makeHeader(state),
         content: [
             makeTitlePage(state)
         ],
         styles: {
             header: {
+                bold: true,
+                alignment: "left",
+                margin: [20, 10, 40, 10],
+            },
+            heading: {
                 fontSize: 18,
                 bold: true,
                 alignment: 'center',
                 margin: [0, 190, 0, 80]
             },
-            subheader: {
+            subheading: {
                 fontSize: 14
             },
             superMargin: {
@@ -85,7 +114,7 @@ const methods = {
     },
     createPDF() {
         console.log("Creating PDF")
-        pdfMake.createPdf(makeDocDefinition(state)).download();
+        pdfMake.createPdf(makeDocDefinition(state)).download()
     }
 }
 
