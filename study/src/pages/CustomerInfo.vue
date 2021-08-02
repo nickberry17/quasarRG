@@ -1,4 +1,3 @@
-
 <template>
   <div class="q-pa-md" style="max-width: 400px">
     <h2>Order Details</h2>

@@ -1,3 +1,4 @@
+
 // make the object reactive
 import { reactive } from 'vue'
 import { v4 as uuidv4 } from 'uuid'
@@ -7,10 +8,13 @@ import pdfMake from "pdfmake/build/pdfmake"
 import pdfFonts from "pdfmake/build/vfs_fonts"
 pdfMake.vfs = pdfFonts.pdfMake.vfs
 
+const side = 40;
+
 let state = reactive({
     survey: {
         type: 'Basic',
-        orderId: ''
+        orderId: '',
+        title: 'Telstra Mobile Phone Service at Millbrook Road, Millbrook WA',
     },
     customers: [
         {
@@ -26,15 +30,15 @@ let state = reactive({
 })
 
 function makeHeader(state) {
+    console.log(__dirname);
     return {
-        text: `${state.survey.orderId.toString()}`,
-        style: 'header'
+        image: '/header.png'
     }
 }
 
 function makeInfo(state) {
     return {
-        title: `${state.survey.type.toString()} Site Assessment ${state.survey.orderId.toString()}`,
+        title: `${state.survey.type.toString()} Site Analysis Report ${state.survey.orderId.toString()}`,
         author: 'Telco Antennas Pty Ltd',
         subject: 'Signal coverage',
         keywords: 'site survey signal coverage survey telco antennas'
@@ -44,14 +48,25 @@ function makeInfo(state) {
 function makeTitlePage(state) {
     return {
         stack: [
-            `${state.survey.type.toString()} Site Assessment`,
+            {
+                text: `${state.survey.type.toString()} Site Analysis Report`,
+                style: 'heading'
+            },
+
+            {
+                text: state.survey.title,
+                style: 'subheading'
+            },
             {
                 text: `Prepared for ${state.customers.map(function (customer) {
                     return `${customer.name} `
-                }).join('')}`, style: 'subheading'
+                }).join('')}`, style: 'large'
+            },
+            {
+                text: `Document Reference Number: ${state.survey.orderId.toString()}`,
+                style: 'subheading'
             }
-        ],
-        style: 'heading'
+        ], style: 'center'
     }
 }
 
@@ -68,25 +83,45 @@ function makeDocDefinition(state) {
             makeTitlePage(state)
         ],
         styles: {
+            center: {
+                alignment: 'center'
+            },
             header: {
                 bold: true,
-                alignment: "left",
-                margin: [20, 10, 40, 10],
+                alignment: "center",
+                margin: [side, 10, side, 10],
             },
             heading: {
-                fontSize: 18,
+                fontSize: 25,
                 bold: true,
                 alignment: 'center',
-                margin: [0, 190, 0, 80]
+                margin: [side, 90, side, 40] // L, T, R, B
             },
             subheading: {
-                fontSize: 14
+                fontSize: 17,
+                lineHeight: 1.5
             },
+            large: {
+                fontSize: 15,
+                lineHeight: 1.25
+            },
+            normal: {
+                fontSize: 11
+            },
+            small: {
+                fontsize: 10
+            },
+            footnote: {
+                fontsize: 8,
+            },
+
             superMargin: {
-                margin: [20, 0, 40, 0],
+                margin: [side, 0, side, 0],
                 fontSize: 15
             }
-        }
+        },
+        pageSize: 'A4',
+
     }
 }
 
@@ -132,5 +167,6 @@ export default {
     state,
     methods,
     // objects
-    Customer
+    Customer,
+    headerImg: 'header.png'
 }

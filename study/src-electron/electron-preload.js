@@ -15,3 +15,6 @@
  *     doAThing: () => {}
  *   })
  */
+import path from 'path'
+
+const publicFolder = path.resolve(__dirname, process.env.QUASAR_PUBLIC_FOLDER)
