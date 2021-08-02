@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md" style="max-width: 400px">
+  <div class="q-pa-md" style="max-width: 33vw">
     <h2>Order Details</h2>
     <q-card style="margin: 1rem">
       <q-input
