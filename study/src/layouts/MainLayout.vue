@@ -38,6 +38,13 @@
             <q-item-section> Customer Information </q-item-section>
           </q-item>
 
+          <q-item to="/LocationInfo" clickable v-ripple>
+            <q-item-section avatar>
+              <q-icon name="place" />
+            </q-item-section>
+            <q-item-section> Location Information </q-item-section>
+          </q-item>
+
           <q-item to="/FresnelCalc" clickable v-ripple>
             <q-item-section avatar>
               <q-icon name="calculate" />

@@ -16,6 +16,13 @@ let state = reactive({
         orderId: '',
         title: 'Telstra Mobile Phone Service at Millbrook Road, Millbrook WA',
     },
+    locations: [
+        {
+            id: uuidv4(),
+            name: 'Telco Antennas Hemmant QLD',
+            gps: ''
+        }
+    ],
     customers: [
         {
             id: uuidv4(),
@@ -30,9 +37,8 @@ let state = reactive({
 })
 
 function makeHeader(state) {
-    console.log(__dirname);
     return {
-        image: '/header.png'
+        text: state.survey.orderId
     }
 }
 
@@ -126,6 +132,17 @@ function makeDocDefinition(state) {
 }
 
 const methods = {
+    createLocation(name) {
+        state.locations.push(
+            new Location(name)
+        )
+        console.log("Locations: " + state.locations[0])
+    },
+    removeLocation(locationId) {
+        let i = state.locations.map(location => location.id).indexOf(locationId)
+        console.log("Deleting from locations[] where id is: " + state.locations[i].id)
+        state.locations.splice(i, 1)
+    },
     createCustomer(name, orderId, company) {
         state.customers.push(
             new Customer(name, orderId, company)
@@ -153,6 +170,14 @@ const methods = {
     }
 }
 
+class Location {
+    constructor(name) {
+        this.id = uuidv4(),
+            this.name = name,
+            console.log(this)
+    }
+}
+
 class Customer {
     constructor(name, orderId, company) {
         this.id = uuidv4(),
@@ -168,5 +193,6 @@ export default {
     methods,
     // objects
     Customer,
+    Location,
     headerImg: 'header.png'
 }
