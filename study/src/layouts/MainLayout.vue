@@ -89,9 +89,6 @@
           <component :is="Component" />
         </keep-alive>
       </router-view>
-      <!--       <keep-alive>
-        <router-view />
-      </keep-alive> -->
     </q-page-container>
   </q-layout>
 </template>
