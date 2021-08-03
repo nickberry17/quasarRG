@@ -19,7 +19,7 @@ let state = reactive({
     locations: [
         {
             id: uuidv4(),
-            name: 'Telco Antennas Hemmant QLD',
+            name: '',
             gps: ''
         }
     ],

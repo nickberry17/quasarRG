@@ -11,7 +11,10 @@
           @click="toggleLeftDrawer"
         />
 
-        <q-toolbar-title> Report Generator </q-toolbar-title>
+        <q-toolbar-title>
+          Report Generator | {{ store.state.survey.type }} |
+          {{ store.state.survey.orderId }}</q-toolbar-title
+        >
 
         <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
@@ -31,6 +34,13 @@
         "
       >
         <q-list padding>
+          <q-item to="/ReportInfo" clickable v-ripple>
+            <q-item-section avatar>
+              <q-icon name="description" />
+            </q-item-section>
+            <q-item-section> Report Information </q-item-section>
+          </q-item>
+
           <q-item to="/CustomerInfo" clickable v-ripple>
             <q-item-section avatar>
               <q-icon name="face" />
@@ -105,7 +115,7 @@ const linksList = [
   },
 ];
 
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, inject } from "vue";
 
 export default defineComponent({
   name: "MainLayout",
@@ -116,10 +126,12 @@ export default defineComponent({
 
   setup() {
     const leftDrawerOpen = ref(false);
+    const store = inject("store");
 
     return {
       essentialLinks: linksList,
       leftDrawerOpen,
+      store,
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value;
       },

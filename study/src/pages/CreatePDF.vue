@@ -5,6 +5,7 @@
       <q-btn
         class="text-h3"
         label="Create PDF"
+        icon="picture_as_pdf download"
         @click="store.methods.createPDF()"
         color="green-9"
       />

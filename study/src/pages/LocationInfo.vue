@@ -1,66 +1,69 @@
 <template>
-  <div class="q-pa-md" style="max-width: 33vw">
-    <h2>Location Details</h2>
+  <div>
+    <div class="q-pa-md" style="max-width: 50vw">
+      <h2>Location Details</h2>
+    </div>
+    <div class="q-pa-md" style="max-width: 33vw">
+      <q-btn
+        label="Add Location"
+        @click="store.methods.createLocation('')"
+        color="primary"
+      />
 
-    <q-btn
-      label="Add Location"
-      @click="store.methods.createLocation('')"
-      color="primary"
-    />
-
-    <q-list
-      bordered
-      separator
-      style="display: flex; flex-flow: column wrap; max-height: 100vh"
-    >
-      <q-item
-        v-for="(location, index) of store.state.locations"
-        :key="location.id"
+      <q-list
+        bordered
+        separator
+        style="display: flex; flex-flow: column wrap; max-height: 100vh"
       >
-        <q-card class="customer-card" style="width: clamp(20vw, 30vw, 25vw)">
-          <q-card-section class="bg-primary text-white">
-            <div class="text-h6">{{ location.name || "Name" }}</div>
-            <div class="text-subtitle2">
-              {{ location.description || "Description" }}
-            </div>
-          </q-card-section>
+        <q-item
+          v-for="(location, index) of store.state.locations"
+          :key="location.id"
+        >
+          <q-card class="customer-card" style="width: clamp(20vw, 30vw, 25vw)">
+            <q-card-section class="bg-primary text-white">
+              <div class="text-h6">{{ location.name || "Name" }}</div>
+              <div class="text-subtitle2">
+                {{ location.description || "Description" }}
+              </div>
+            </q-card-section>
 
-          <q-separator />
+            <q-separator />
 
-          <q-form
-            @submit="store.methods.createLocation('')"
-            class="q-gutter-md"
-          >
-            <q-input
-              color="purple-12"
-              filled
-              v-model="store.state.locations[index].name"
-              label="Location name *"
-              hint="Location Name"
-              lazy-rules
-              :rules="[(val) => (val && val.length > 0) || 'Cannot be blank']"
-            />
+            <q-form
+              @submit="store.methods.createLocation('')"
+              class="q-gutter-md"
+            >
+              <q-input
+                color="purple-12"
+                filled
+                v-model="store.state.locations[index].name"
+                label="Location name *"
+                hint="Location Name"
+                lazy-rules
+                :rules="[(val) => (val && val.length > 0) || 'Cannot be blank']"
+              />
 
-            <q-input
-              color="purple-12"
-              v-model="store.state.locations[index].description"
-              filled
-              type="string"
-              label="Location description"
-              hint="Location description"
-            />
-          </q-form>
-          <q-card-actions align="right">
-            <q-btn
-              label="Delete"
-              color="red"
-              rounded
-              @click="store.methods.removeLocation(location.id)"
-            />
-          </q-card-actions>
-        </q-card>
-      </q-item>
-    </q-list>
+              <q-input
+                color="purple-12"
+                v-model="store.state.locations[index].description"
+                filled
+                type="string"
+                label="Location description"
+                hint="Location description"
+              />
+            </q-form>
+            <q-card-actions align="right">
+              <q-btn
+                label="Delete"
+                color="red"
+                rounded
+                @click="store.methods.removeLocation(location.id)"
+              />
+            </q-card-actions>
+          </q-card>
+        </q-item>
+      </q-list>
+    </div>
   </div>
 </template>
 
