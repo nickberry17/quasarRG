@@ -56,6 +56,13 @@
             <q-item-section> Location Information </q-item-section>
           </q-item>
 
+          <q-item to="/BaseStationInfo" clickable v-ripple>
+            <q-item-section avatar>
+              <q-icon name="settings_input_antenna" />
+            </q-item-section>
+            <q-item-section> Base Station Information </q-item-section>
+          </q-item>
+
           <q-item to="/FresnelCalc" clickable v-ripple>
             <q-item-section avatar>
               <q-icon name="calculate" />

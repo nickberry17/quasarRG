@@ -17,6 +17,21 @@ let state = reactive({
         title: 'Telstra Mobile Phone Service at Millbrook Road, Millbrook WA',
         revisionNumber: '1'
     },
+    baseStations: [
+        {
+            id: uuidv4(),
+            name: '',
+            gps: '',
+            accessTechnologies:
+                [
+
+                ],
+            serviceTypes:
+                [
+
+                ],
+        }
+    ],
     locations: [
         {
             id: uuidv4(),
@@ -135,6 +150,17 @@ function makeDocDefinition(state) {
 }
 
 const methods = {
+    createBaseStation(name) {
+        state.baseStations.push(
+            new BaseStation(name)
+        )
+        console.log("BaseStations: " + state.baseStations[0])
+    },
+    removeBaseStation(baseStationId) {
+        let i = state.baseStations.map(baseStation => baseStation.id).indexOf(baseStationId)
+        console.log("Deleting from BaseStations[] where id is: " + state.baseStations[i].id)
+        state.baseStations.splice(i, 1)
+    },
     createLocation(name) {
         state.locations.push(
             new Location(name)
@@ -173,6 +199,15 @@ const methods = {
     }
 }
 
+class BaseStation {
+    constructor(name) {
+        this.id = uuidv4(),
+            this.name = name,
+            this.accessTechnologies = [],
+            this.serviceTypes = []
+    }
+}
+
 class Location {
     constructor(name) {
         this.id = uuidv4(),
@@ -197,5 +232,6 @@ export default {
     // objects
     Customer,
     Location,
+    BaseStation,
     headerImg: 'header.png'
 }
