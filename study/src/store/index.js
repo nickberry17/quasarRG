@@ -38,7 +38,8 @@ let state = reactive({
 
 function makeHeader(state) {
     return {
-        text: state.survey.orderId
+        text: '[Header image goes here]',
+        style: 'center'
     }
 }
 
@@ -127,7 +128,6 @@ function makeDocDefinition(state) {
             }
         },
         pageSize: 'A4',
-
     }
 }
 

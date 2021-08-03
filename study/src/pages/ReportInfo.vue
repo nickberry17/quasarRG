@@ -10,20 +10,12 @@
         </q-card-section>
         <q-card-section class="q-pt-none">
           <q-input
-            color="purple-12"
             filled
-            type="string"
             v-model="store.state.survey.orderId"
-            label="Order ID *"
-            hint="Order ID"
-            lazy-rules
-            :rules="[
-              (val) =>
-                (val !== null && val !== '') || 'Please supply the order ID',
-              (val) =>
-                (val[0] === 'N' && val.length > 0 && val.length < 7) ||
-                'Invalid Order ID',
-            ]"
+            label="Order Id"
+            mask="N#####"
+            unmasked-value
+            hint="Order ID: N#####"
           />
         </q-card-section>
       </q-card>
