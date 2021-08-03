@@ -41,6 +41,13 @@
               label="Detailed"
               color="orange"
             />
+            <q-radio
+              keep-color
+              v-model="store.state.survey.type"
+              val="Microwave"
+              label="Microwave"
+              color="purple"
+            />
           </div>
         </q-card-section>
       </q-card>
