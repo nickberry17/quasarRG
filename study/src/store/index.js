@@ -15,6 +15,7 @@ let state = reactive({
         type: 'Basic',
         orderId: '',
         title: 'Telstra Mobile Phone Service at Millbrook Road, Millbrook WA',
+        revisionNumber: '1'
     },
     locations: [
         {
