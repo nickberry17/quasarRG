@@ -4,7 +4,7 @@
       <h2>Report Details</h2>
     </div>
     <div class="q-pa-md" style="max-width: 33vw">
-      <q-card class="my-card">
+      <q-card class="std-card">
         <q-card-section>
           <div class="text-h6">Order ID</div>
         </q-card-section>
@@ -20,7 +20,7 @@
         </q-card-section>
       </q-card>
 
-      <q-card class="my-card">
+      <q-card class="std-card">
         <q-card-section>
           <div class="text-h6">Survey Type</div>
         </q-card-section>
@@ -45,7 +45,7 @@
         </q-card-section>
       </q-card>
 
-      <q-card class="my-card">
+      <q-card class="std-card">
         <q-card-section>
           <div class="text-h6">Revision Number</div>
         </q-card-section>
@@ -79,7 +79,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.my-card {
+.std-card {
   margin: 1rem;
 }
 </style>

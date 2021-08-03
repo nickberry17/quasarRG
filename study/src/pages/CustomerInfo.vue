@@ -19,7 +19,7 @@
           v-for="(customer, index) of store.state.customers"
           :key="customer.id"
         >
-          <q-card class="customer-card" style="width: clamp(20vw, 30vw, 25vw)">
+          <q-card class="std-card" style="width: clamp(20vw, 30vw, 25vw)">
             <q-card-section class="bg-primary text-white">
               <div class="text-h6">{{ customer.name || "Customer Name" }}</div>
               <div class="text-subtitle2">
@@ -94,7 +94,7 @@ export default defineComponent({
   margin: 1rem;
 }
 
-.customer-card {
+.std-card {
   padding: 1rem;
   margin: 1rem;
 }

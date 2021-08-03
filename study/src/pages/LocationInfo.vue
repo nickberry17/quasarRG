@@ -19,7 +19,7 @@
           v-for="(location, index) of store.state.locations"
           :key="location.id"
         >
-          <q-card class="customer-card" style="width: clamp(20vw, 30vw, 25vw)">
+          <q-card class="std-card" style="width: clamp(20vw, 30vw, 25vw)">
             <q-card-section class="bg-primary text-white">
               <div class="text-h6">{{ location.name || "Name" }}</div>
               <div class="text-subtitle2">
@@ -91,7 +91,7 @@ export default defineComponent({
   margin: 1rem;
 }
 
-.location-card {
+.std-card {
   padding: 1rem;
   margin: 1rem;
 }
