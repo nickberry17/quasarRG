@@ -1,8 +1,5 @@
 <template>
   <div>
-    <div class="q-pa-md" style="max-width: 50vw">
-      <h4>Base Station Details</h4>
-    </div>
     <div class="q-pa-md" style="max-width: 33vw">
       <q-btn
         label="Add Base Station"
@@ -15,10 +12,24 @@
         separator
         style="display: flex; flex-flow: column wrap; max-height: 100vh"
       >
-        <q-item
+        <q-expansion-item
           v-for="(baseStation, index) of store.state.baseStations"
           :key="baseStation.id"
+          default-opened
         >
+          <template v-slot:header>
+            <q-item-section avatar>
+              <q-avatar
+                icon="settings_input_antenna"
+                color="primary"
+                text-color="white"
+              />
+            </q-item-section>
+
+            <q-item-section>
+              {{ baseStation.name || "Base Station Name" }}
+            </q-item-section>
+          </template>
           <q-card class="std-card" style="width: clamp(20vw, 30vw, 25vw)">
             <q-card-section class="bg-primary text-white">
               <div class="text-h6">
@@ -98,7 +109,7 @@
               />
             </q-card-actions>
           </q-card>
-        </q-item>
+        </q-expansion-item>
       </q-list>
     </div>
   </div>
