@@ -2,7 +2,7 @@
   "name": "study",
   "version": "0.0.1",
   "description": "A Quasar Framework app",
-  "productName": "Quasar App",
+  "productName": "Report Generator",
   "author": "Nicholas Smith <nicholas@nbembedded.com>",
   "private": true,
   "scripts": {
