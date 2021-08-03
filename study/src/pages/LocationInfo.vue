@@ -1,8 +1,5 @@
 <template>
   <div>
-    <div class="q-pa-md" style="max-width: 50vw">
-      <h2>Location Details</h2>
-    </div>
     <div class="q-pa-md" style="max-width: 33vw">
       <q-btn
         label="Add Location"

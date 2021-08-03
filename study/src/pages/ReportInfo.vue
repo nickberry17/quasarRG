@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="q-pa-md" style="max-width: 50vw">
-      <h2>Report Details</h2>
+      <h4>Report Details</h4>
     </div>
     <div class="q-pa-md" style="max-width: 33vw">
       <q-card class="std-card">
