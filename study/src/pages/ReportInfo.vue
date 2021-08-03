@@ -4,7 +4,7 @@
       <h2>Report Details</h2>
     </div>
     <div class="q-pa-md" style="max-width: 33vw">
-      <q-card flat bordered class="my-card">
+      <q-card class="my-card">
         <q-card-section>
           <div class="text-h6">Order ID</div>
         </q-card-section>
@@ -20,7 +20,7 @@
         </q-card-section>
       </q-card>
 
-      <q-card flat bordered class="my-card">
+      <q-card class="my-card">
         <q-card-section>
           <div class="text-h6">Survey Type</div>
         </q-card-section>
@@ -42,6 +42,21 @@
               color="orange"
             />
           </div>
+        </q-card-section>
+      </q-card>
+
+      <q-card class="my-card">
+        <q-card-section>
+          <div class="text-h6">Revision Number</div>
+        </q-card-section>
+        <q-card-section>
+          <q-input
+            filled
+            v-model="store.state.survey.revisionNumber"
+            label="Revision Number"
+            type="number"
+            unmasked-value
+          />
         </q-card-section>
       </q-card>
     </div>

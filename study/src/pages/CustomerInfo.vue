@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="q-pa-sm" style="max-width: 50vw">
+    <div class="q-pa-md" style="max-width: 50vw">
       <h2>Customer Details</h2>
     </div>
-    <div class="q-pa-sm" style="max-width: 33vw">
+    <div class="q-pa-md" style="max-width: 33vw">
       <q-btn
         label="Add Customer"
         @click="store.methods.createCustomer('', '', '')"
