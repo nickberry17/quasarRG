@@ -13,7 +13,8 @@
 
         <q-toolbar-title>
           Report Generator | {{ store.state.survey.type }} |
-          {{ store.state.survey.orderId }}</q-toolbar-title
+          {{ store.state.survey.orderId }} | Revision
+          {{ store.state.survey.revisionNumber }}</q-toolbar-title
         >
 
         <div>Quasar v{{ $q.version }}</div>
