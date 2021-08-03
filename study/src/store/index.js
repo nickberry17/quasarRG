@@ -21,7 +21,9 @@ let state = reactive({
         {
             id: uuidv4(),
             name: '',
-            gps: ''
+            gps: '',
+            servicePossible: '',
+            reliability: ''
         }
     ],
     customers: [
