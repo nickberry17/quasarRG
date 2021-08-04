@@ -6,13 +6,13 @@
           <div class="text-h5">Fresnel Zone Radii</div>
         </q-card-section>
 
-        <q-card-section rounded class="text-h2 q-pt-none bg-blue text-white">
+        <q-card-section rounded class="text-h2 q-pt-none">
           Fresnel zone radius: {{ store.state.fresnelZoneRadius }}m
         </q-card-section>
 
         <q-separator inset />
 
-        <q-card-section class="text-h4 q-pt-none bg-orange text-black">
+        <q-card-section class="text-h4 q-pt-none text-black">
           60% Fresnel zone radius:
           {{ (store.state.fresnelZoneRadius * 0.6).toFixed(2) }}m
         </q-card-section>
