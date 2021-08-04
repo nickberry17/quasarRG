@@ -18,19 +18,7 @@ let state = reactive({
         revisionNumber: '1'
     },
     baseStations: [
-        {
-            id: uuidv4(),
-            name: '',
-            gps: '',
-            accessTechnologies:
-                [
 
-                ],
-            serviceTypes:
-                [
-
-                ],
-        }
     ],
     locations: [
         {
@@ -204,7 +192,35 @@ class BaseStation {
         this.id = uuidv4(),
             this.name = name,
             this.accessTechnologies = [],
-            this.serviceTypes = []
+            this.serviceTypes = [],
+            this.nr5gBands = [
+                { band: 'n78', frequency: '3500', present: false },
+            ],
+            this.umtsBands = [
+                { band: 'B1', frequency: '2100', present: false },
+                { band: 'B8', frequency: '900', present: false },
+                { band: 'B5', frequency: '850', present: false }
+            ],
+            this.lteBands = [
+                { band: 'B1', frequency: '2100', present: false },
+                { band: 'B3', frequency: '1800', present: false },
+                { band: 'B5', frequency: '850', present: false },
+                { band: 'B7', frequency: '2600', present: false },
+                { band: 'B8', frequency: '900', present: false },
+                { band: 'B28', frequency: '700', present: false },
+                { band: 'B40', frequency: '2300', present: false }
+            ],
+            this.microwaveBands = [
+                { band: '915', frequency: '915', present: false },
+                { band: '2400', frequency: '2400', present: false },
+                { band: '5100', frequency: '5100', present: false },
+                { band: '24000', frequency: '24000', present: false },
+            ],
+            this.operators = [
+                { operator: 'Telstra', present: false },
+                { operator: 'Optus', present: false },
+                { operator: 'Vodafone/TPG Mobile', present: false },
+            ]
     }
 }
 
