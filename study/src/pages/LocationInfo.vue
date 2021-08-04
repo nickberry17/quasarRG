@@ -51,7 +51,7 @@
             </q-form>
             <q-card-actions align="right">
               <q-btn
-                label="Delete"
+                icon="delete_forever"
                 color="red"
                 rounded
                 @click="store.methods.removeLocation(location.id)"
