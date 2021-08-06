@@ -42,10 +42,9 @@ let state = reactive({
     fresnelZoneRadius: 0
 })
 
-function makeHeader(state) {
+function makeHeader() {
     return {
-        text: '[Header image goes here]',
-        style: 'center'
+        image: require('../../public/img/header.png')
     }
 }
 
